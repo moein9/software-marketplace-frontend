@@ -1,35 +1,63 @@
 import { useState } from "react";
-function Navbar() {
+import { Route, Routes, Link, useLocation } from "react-router-dom";
+import About from "../pages/About";
+
+function Navbar({ cartItems }) {
+  const showCartIcon = location.pathname === "/products";
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = [
-    { text: "Products", href: "#" },
+    { text: "About", href: "/about" },
+
+    { text: "Products", href: "/products" },
     { text: "Pricing", href: "#" },
     { text: "Showcase", href: "#" },
     { text: "Developers", href: "#" },
     { text: "Support", href: "#" },
   ];
   return (
-    <nav className="bg-gray-800">
+    <nav className="">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 font-bold text-lg bg-white rounded-br-lg rounded-bl-lg">
         <div className="flex justify-between h-16">
           <div className="flex items-center lg:w-auto">
-            <a href="#" className=" font-bold text-xl">
+            <a href="/" className=" font-bold text-xl">
               Nermawala
             </a>
           </div>
+          {showCartIcon && (
+            <div className="flex items-center text-gray-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 15v6a2 2 0 002 2h2a2 2 0 002-2v-6M9 15a3 3 0 003 3h0a3 3 0 003-3M9 15a3 3 0 013-3h0a3 3 0 013 3M7 3h10a2 2 0 012 2v1H5V5a2 2 0 012-2z"
+                />
+              </svg>
+              <span className="font-bold text-purple-600">
+                {cartItems.length + " "}
+              </span>{" "}
+              <h3 className="p-2">items in cart</h3>
+            </div>
+          )}
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.text}
-                href={link.href}
-                className="hover:bg-gray-700 px-3 py-2 rounded-md font-semibold"
+                to={link.href}
+                className="hover:bg-gray-300 px-3 py-2 rounded-md font-semibold"
               >
                 {link.text}
-              </a>
+              </Link>
             ))}
             <a
               href="#"
-              className=" whitespace-nowrap hover:bg-green-700 text-white bg-mainbutton font-bold py-2 px-4 rounded"
+              className=" whitespace-nowrap bg-slate-800 hover:bg-green-700 text-white bg-mainbutton font-bold py-2 px-4 rounded"
             >
               Start finding
             </a>
@@ -63,7 +91,7 @@ function Navbar() {
             <a
               key={link.text}
               href={link.href}
-              className="hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md font-medium"
+              className="hover:bg-gray-700 text-white  hover:text-white block px-3 py-2 rounded-md font-medium"
             >
               {link.text}
             </a>
