@@ -1,29 +1,31 @@
 import { useState } from "react";
 import { Route, Routes, Link, useLocation } from "react-router-dom";
-import About from "../pages/About";
+import { useSelector } from "react-redux";
 
-function Navbar({ cartItems }) {
-  const showCartIcon = location.pathname === "/products";
+function Navbar() {
+  const count = useSelector((state) => state.counter.value);
+
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = [
-    { text: "About", href: "/about" },
 
+    { text: "About", href: "/about" },
     { text: "Products", href: "/products" },
     { text: "Pricing", href: "#" },
     { text: "Showcase", href: "#" },
     { text: "Developers", href: "#" },
     { text: "Support", href: "#" },
+    
   ];
   return (
     <nav className="">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 font-bold text-lg bg-white rounded-br-lg rounded-bl-lg">
         <div className="flex justify-between h-16">
           <div className="flex items-center lg:w-auto">
-            <a href="/" className=" font-bold text-xl">
+            <Link to="/" className=" font-bold text-xl">
               Nermawala
-            </a>
+            </Link>
           </div>
-          {showCartIcon && (
+          {
             <div className="flex items-center text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,18 +41,16 @@ function Navbar({ cartItems }) {
                   d="M9 15v6a2 2 0 002 2h2a2 2 0 002-2v-6M9 15a3 3 0 003 3h0a3 3 0 003-3M9 15a3 3 0 013-3h0a3 3 0 013 3M7 3h10a2 2 0 012 2v1H5V5a2 2 0 012-2z"
                 />
               </svg>
-              <span className="font-bold text-purple-600">
-                {cartItems.length + " "}
-              </span>{" "}
+              <span className="font-bold text-purple-600">{count}</span>
               <h3 className="p-2">items in cart</h3>
             </div>
-          )}
+          }
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
               <Link
                 key={link.text}
                 to={link.href}
-                className="hover:bg-gray-300 px-3 py-2 rounded-md font-semibold"
+                className=" hover:bg-gray-300 px-3 py-2 rounded-md font-semibold"
               >
                 {link.text}
               </Link>
@@ -88,13 +88,13 @@ function Navbar({ cartItems }) {
       <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 bg-silver rounded p-4 m-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.text}
-              href={link.href}
-              className="hover:bg-gray-700 text-white  hover:text-white block px-3 py-2 rounded-md font-medium"
+              to={link.href}
+              className="hover:bg-gray-700 text-black  hover:text-white block px-3 py-2 rounded-md font-medium"
             >
               {link.text}
-            </a>
+            </Link>
           ))}
           <a
             href="#"

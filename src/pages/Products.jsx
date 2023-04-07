@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
-// import productsData from "../services/data/products.json";
+import { useGetProductQuery } from "../redux/services/apiSlice";
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: products, isLoading, error } = useGetProductQuery();
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("/src/services/data/products.json");
-        const data = await response.json();
-        setProducts(data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="text-center mt-20">
         <p className="text-gray-600 text-lg animate-pulse">

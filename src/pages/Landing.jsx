@@ -24,7 +24,7 @@ const Landing = () => {
             Start finding
           </a>
         </div>
-        <div className=" relative bg-opacity-75 bg-blue-900 h-80 w-[33rem] hover:bg-gray-400 hover:grayscale-[10%]  transition-all rounded-lg">
+        <div className=" hidden  lg:flex  relative bg-opacity-75 bg-blue-900 h-80 w-[33rem] hover:bg-gray-400 hover:grayscale-[10%]  transition-all rounded-lg">
           <div className=" absolute h-[40rem] bottom-[-10rem] hover:grayscale-[30%] hover:h-[42rem] duration-700 hover:left-40 transition-all left-56 w-[46rem]  transform -translate-x-80">
             <img src={heroimg} alt="" className=" w-full object-cover " />
           </div>

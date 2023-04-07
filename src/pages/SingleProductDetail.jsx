@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import products from "/src/services/data/products.json";
+import { useDispatch } from "react-redux";
+import { increment } from "../redux/counterSlice";
 
 function SingleProductDetail({ onAddToCart }) {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const product = products.find((product) => product.id === parseInt(id));
 
@@ -15,11 +18,6 @@ function SingleProductDetail({ onAddToCart }) {
       </div>
     );
   }
-
-  const handleAddToCart = () => {
-    onAddToCart(product, quantity);
-    setQuantity(1);
-  };
 
   return (
     <section className="bg-gray-200 py-20 h-screen">
@@ -68,7 +66,7 @@ function SingleProductDetail({ onAddToCart }) {
               />
             </div>
             <button
-              onClick={handleAddToCart}
+              onClick={() => dispatch(increment(quantity))}
               className="bg-blue-500 text-white px-4 p-2 rounded-lg hover:bg-blue-600 mt-4"
               disabled={!product.inStock}
             >
