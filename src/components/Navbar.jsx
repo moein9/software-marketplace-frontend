@@ -1,23 +1,22 @@
 import { useState } from "react";
 import { Route, Routes, Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaShoppingBasket } from "react-icons/fa";
 
 function Navbar() {
   const count = useSelector((state) => state.counter.value);
 
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = [
-
     { text: "About", href: "/about" },
     { text: "Products", href: "/products" },
-    { text: "Pricing", href: "#" },
-    { text: "Showcase", href: "#" },
-    { text: "Developers", href: "#" },
-    { text: "Support", href: "#" },
-    
+    { text: "Pricing", href: "/pricing" },
+    // { text: "Showcase", href: "#" },
+    { text: "Developers", href: "/developers" },
+    { text: "Support", href: "mailto:support@nermawala.com" },
   ];
   return (
-    <nav className="">
+    <nav>
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 font-bold text-lg bg-white rounded-br-lg rounded-bl-lg">
         <div className="flex justify-between h-16">
           <div className="flex items-center lg:w-auto">
@@ -26,24 +25,14 @@ function Navbar() {
             </Link>
           </div>
           {
-            <div className="flex items-center text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 15v6a2 2 0 002 2h2a2 2 0 002-2v-6M9 15a3 3 0 003 3h0a3 3 0 003-3M9 15a3 3 0 013-3h0a3 3 0 013 3M7 3h10a2 2 0 012 2v1H5V5a2 2 0 012-2z"
-                />
-              </svg>
-              <span className="font-bold text-purple-600">{count}</span>
-              <h3 className="p-2">items in cart</h3>
-            </div>
+            <Link to='/checkout'>
+              <div className="flex items-center text-gray-600">
+                <FaShoppingBasket className="absolute" />
+                <span className="relative  p-4 font-bold text-purple-600">
+                  {count}
+                </span>
+              </div>
+            </Link>
           }
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
@@ -55,12 +44,12 @@ function Navbar() {
                 {link.text}
               </Link>
             ))}
-            <a
-              href="#"
+            <Link
+              to="/signup"
               className=" whitespace-nowrap bg-slate-800 hover:bg-green-700 text-white bg-mainbutton font-bold py-2 px-4 rounded"
             >
               Start finding
-            </a>
+            </Link>
           </div>
           <div className="flex md:hidden">
             <button

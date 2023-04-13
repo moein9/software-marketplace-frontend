@@ -1,0 +1,45 @@
+{
+  "developers": [
+    {
+      "id": 1,
+      "name": "John Smith",
+      "ranking": 4.5,
+      "softwareSold": 25,
+      "feedback": [
+        {
+          "id": 1,
+          "text": "Great software! Very useful.",
+          "stars": 5
+        },
+        {
+          "id": 2,
+          "text": "Had some issues with installation, but support was very helpful.",
+          "stars": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "ranking": 4.8,
+      "softwareSold": 50,
+      "feedback": [
+        {
+          "id": 1,
+          "text": "Awesome software! Can't imagine working without it.",
+          "stars": 5
+        },
+        {
+          "id": 2,
+          "text": "Very user-friendly and intuitive interface.",
+          "stars": 5
+        },
+        {
+          "id": 3,
+          "text": "Had some issues with compatibility, but the developer quickly fixed them.",
+          "stars": 4
+        }
+      ]
+    }
+  ]
+}

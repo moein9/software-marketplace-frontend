@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import products from "/src/services/data/products.json";
 import { useDispatch } from "react-redux";
 import { increment } from "../redux/counterSlice";
+import { addItem } from "../redux/services/cartSlice";
 
 function SingleProductDetail({ onAddToCart }) {
   const dispatch = useDispatch();
@@ -19,6 +20,24 @@ function SingleProductDetail({ onAddToCart }) {
     );
   }
 
+  const handleAddToCart = (item) => {
+    const existingItemIndex = cartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (existingItemIndex !== -1) {
+      const updatedCartItem = { ...cartItems[existingItemIndex] };
+      updatedCartItem.quantity += 1;
+      setCartItems([
+        ...cartItems.slice(0, existingItemIndex),
+        updatedCartItem,
+        ...cartItems.slice(existingItemIndex + 1),
+      ]);
+    } else {
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+    }
+  };
+
+  
   return (
     <section className="bg-gray-200 py-20 h-screen">
       <div className="container mx-auto">
@@ -66,7 +85,10 @@ function SingleProductDetail({ onAddToCart }) {
               />
             </div>
             <button
-              onClick={() => dispatch(increment(quantity))}
+              onClick={() => {
+                dispatch(addItem({ product, quantity }));
+                dispatch(increment(quantity))
+              }}
               className="bg-blue-500 text-white px-4 p-2 rounded-lg hover:bg-blue-600 mt-4"
               disabled={!product.inStock}
             >

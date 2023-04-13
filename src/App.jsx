@@ -6,7 +6,11 @@ import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Products from "./pages/Products";
 import SingleProductDetail from "./pages/SingleProductDetail";
-
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Pricing from "./pages/Pricing";
+import DevelopersPage from "./pages/Developers";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -24,6 +28,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProductDetail />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/developers" element={<DevelopersPage />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </div>

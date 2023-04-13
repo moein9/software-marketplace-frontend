@@ -3,8 +3,8 @@ import teamimg from "../assets/images/undraw_team_page_re_cffb.svg";
 
 function About() {
   return (
-    <section className="flex flex-col justify-center items-center bg-gray-300 p-20 h-screen">
-      <img src={teamimg} alt="" className="justify-center w-60 h-60 p-4" />
+    <section className="flex flex-col justify-center items-center bg-gray-300  h-screen">
+      <img src={teamimg} alt="" className="justify-center w-60 h-60 pb-4" />
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-4xl font-bold mb-4">About Our Marketplace</h2>

@@ -19,7 +19,8 @@
     "name": "Product 3",
     "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam dapibus, sapien in ultrices pretium, elit nisi hendrerit erat, sed gravida ipsum est sed risus.",
     "price": 29.99,
-    "image": "https://picsum.photos/id/3/300/200"
+    "image": "https://picsum.photos/id/3/300/200",
+    "inStock": 2
   },
   {
     "id": 4,
