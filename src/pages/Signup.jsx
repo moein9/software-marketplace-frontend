@@ -2,13 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+
+
+  function submitHandling(e) {
+    e.preventDefault();
+    alert("Submitting!");
+  }
+
   return (
     <div className=" flex-col pt-96 m-4 h-96 flex justify-center items-center bg-white">
       <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold mb-8 text-gray-800">
           First, let's get your account set up.
         </h2>
-        <form className="space-y-6">
+        <form onSubmit={(e) => submitHandling(e)} className="space-y-6">
           <div>
             <label
               className="block text-gray-800 font-bold mb-2"
@@ -105,7 +112,7 @@ const Signup = () => {
           <div className=" rounded-full flex justify-center items-center ">
             <Link
               to="/login"
-              className="whitespace-nowrap text-center bg-gray-900 text-xl hover:bg-green-700 text-white bg-mainbutton font-bold py-4 px-6 rounded-l"
+              className="whitespace-nowrap text-center bg-gray-900 text-xl hover:bg-green-700 text-white bg-mainbutton font-bold py-4 px-6 rounded-lg"
             >
               Login
             </Link>
