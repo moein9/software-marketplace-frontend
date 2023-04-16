@@ -28,7 +28,7 @@ function Products() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
+          {products&&products.map((product) => (
             <div
               key={product.id}
               className="bg-gray-100 rounded-lg overflow-hidden"
