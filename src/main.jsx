@@ -9,11 +9,10 @@ import { productApi } from "./redux/services/apiSlice";
 import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
           <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  
 );
