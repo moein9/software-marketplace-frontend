@@ -28,31 +28,32 @@ function Products() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products?.map((product) => (
-            <div
-              key={product.id}
-              className="bg-gray-100 rounded-lg overflow-hidden"
-            >
-              <Link to={`/products/${product.id}`}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover"
-                />
-              </Link>
-              <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-2">{product.description}</p>
-                <p className="text-gray-600 font-bold">${product.price}</p>
-                <Link
-                  to={`/products/${product.id}`}
-                  className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300"
-                >
-                  View Details
+          {products &&
+            products.map((product) => (
+              <div
+                key={product.id}
+                className="bg-gray-100 rounded-lg overflow-hidden"
+              >
+                <Link to={`/products/${product.id}`}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
+                  />
                 </Link>
+                <div className="p-4">
+                  <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+                  <p className="text-gray-600 mb-2">{product.description}</p>
+                  <p className="text-gray-600 font-bold">${product.price}</p>
+                  <Link
+                    to={`/products/${product.id}`}
+                    className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>
