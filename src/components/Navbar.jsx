@@ -25,11 +25,12 @@ function Navbar() {
             </Link>
           </div>
           {
-            <Link to='/checkout'>
-              <div className="flex items-center text-gray-600">
-                <FaShoppingBasket className="absolute" />
-                <span className="relative  p-4 font-bold text-purple-600">
-                  {count}
+            <Link to="/checkout">
+              <div className="pt-4 text-gray-600 ">
+                <FaShoppingBasket className="absolute " />
+                <span className="relative px-4  text-purple-600">
+                 
+                  {count > 0 ? count : ''}
                 </span>
               </div>
             </Link>
