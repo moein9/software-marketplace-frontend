@@ -11,7 +11,7 @@ const Landing = () => {
 
   return (
     <>
-      <div  className="bg-slate-900">
+      <div className="bg-slate-900">
         <div className="flex  justify-around items-center w-screen  py-52   bg-gray-900 ">
           <div className=" flex flex-col m-2 p-2">
             <h1 className=" text-5xl text-white font-bold">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import products from "/src/services/data/products.json";
 import { useDispatch } from "react-redux";
-import { increment } from "../redux/counterSlice";
+import { increment } from "../redux/services/counterSlice";
 import { addItem } from "../redux/services/cartSlice";
 
 function SingleProductDetail({ onAddToCart }) {
@@ -37,7 +37,6 @@ function SingleProductDetail({ onAddToCart }) {
     }
   };
 
-  
   return (
     <section className="bg-gray-200 py-20 h-screen">
       <div className="container mx-auto">
@@ -87,7 +86,7 @@ function SingleProductDetail({ onAddToCart }) {
             <button
               onClick={() => {
                 dispatch(addItem({ product, quantity }));
-                dispatch(increment(quantity))
+                dispatch(increment(quantity));
               }}
               className="bg-blue-500 text-white px-4 p-2 rounded-lg hover:bg-blue-600 mt-4"
               disabled={!product.inStock}

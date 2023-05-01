@@ -10,7 +10,7 @@ function Navbar() {
   const navLinks = [
     { text: "About", href: "/about" },
     { text: "Products", href: "/products" },
-    { text: "Pricing", href: "/pricing" },
+    // { text: "Pricing", href: "/pricing" },
     // { text: "Showcase", href: "#" },
     { text: "Developers", href: "/developers" },
     { text: "Support", href: "mailto:support@nermawala.com" },
