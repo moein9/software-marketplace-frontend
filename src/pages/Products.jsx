@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGetProductQuery } from "../redux/services/apiSlice";
 import { useState } from "react";
-import Pagination from "../components/PAgination.jsx";
+import Pagination from "../components/Pagination.jsx";
 
 function Products() {
   const { data: products, isLoading, error } = useGetProductQuery();
