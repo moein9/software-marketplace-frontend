@@ -7,6 +7,7 @@ const initialState = {
     items: [],
   },
   orderHistory: [],
+  
 };
 
 const rootReducer = (state = initialState, action) => {

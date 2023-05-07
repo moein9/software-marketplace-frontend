@@ -1,13 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useCreateUserMutation } from "../redux/services/authSlice";
 
 const Signup = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.auth || {});
 
+  const [createUser, { isLoading }] = useCreateUserMutation();
 
-  function submitHandling(e) {
-    e.preventDefault();
-    alert("Submitting!");
-  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    switch (name) {
+      case "username":
+        setUsername(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage("");
+
+    const userData = {
+      username,
+      email,
+      firstName,
+      lastName,
+      password,
+    };
+
+    try {
+      await dispatch(createUser(userData)).unwrap();
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.message);
+    }
+  };
 
   return (
     <div className=" flex-col pt-96 m-4 h-96 flex justify-center items-center bg-white">
@@ -15,8 +65,33 @@ const Signup = () => {
         <h2 className="text-2xl font-bold mb-8 text-gray-800">
           First, let's get your account set up.
         </h2>
-        <form onSubmit={(e) => submitHandling(e)} className="space-y-6">
+        {errorMessage && (
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Error: </strong>
+            <span className="block sm:inline">{errorMessage}</span>
+          </div>
+        )}{" "}
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
+            <label
+              className="block text-gray-800 font-bold mb-2"
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="username"
+              className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              placeholder="john"
+              required
+              value={username}
+              onChange={handleInputChange}
+            />
             <label
               className="block text-gray-800 font-bold mb-2"
               htmlFor="email"
@@ -30,6 +105,8 @@ const Signup = () => {
               className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               placeholder="you@example.com"
               required
+              value={email}
+              onChange={handleInputChange}
             />
           </div>
           <div className="flex flex-wrap -mx-2">
@@ -47,6 +124,8 @@ const Signup = () => {
                 className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 placeholder="John"
                 required
+                value={firstName}
+                onChange={handleInputChange}
               />
             </div>
             <div className="w-1/2 px-2">
@@ -63,6 +142,8 @@ const Signup = () => {
                 className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 placeholder="Doe"
                 required
+                value={lastName}
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -80,6 +161,8 @@ const Signup = () => {
               className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               placeholder="********"
               required
+              value={password}
+              onChange={handleInputChange}
             />
           </div>
           <div>
